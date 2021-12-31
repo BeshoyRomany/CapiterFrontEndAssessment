@@ -1,0 +1,29 @@
+<article class="app-layout">
+    <!-- APP: Left Side -->
+    <section class="app-layout-leftSide">
+        <aside class="app-layout-leftSide--sidebar">
+            <app-sidebar></app-sidebar>
+        </aside>
+    </section>
+    <!-- //End Left Side -->
+
+    <!-- APP: Right Side -->
+    <section class="app-layout-rightSide">
+        <!-- APP: Header -->
+        <header>
+            <app-header></app-header>
+        </header>
+        <!-- APP: Content -->
+        <section>
+            <section class="app-layout-rightSide--overlay d-none" (click)="onToggleSidebar()"></section>
+            <div class="app-layout-rightSide--content">
+                <router-outlet></router-outlet>
+            </div>
+        </section>
+        <!-- APP: Footer -->
+        <footer>
+
+        </footer>
+    </section>
+    <!-- //End Right Side -->
+</article>

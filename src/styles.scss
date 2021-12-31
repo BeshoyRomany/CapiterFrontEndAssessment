@@ -1,0 +1,59 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+//Custom
+.d-none {
+  display: none;
+}
+//Custom App Panels
+.app-panel {
+  &--header {
+    display: flex;
+    margin-bottom: 2rem;
+    & h3 {
+      margin-left: 1rem;
+      margin-bottom: 0;
+    }
+    & mat-icon {
+      font-size: 1.8rem;
+    }
+  }
+  &--content {
+    & table {
+      width: 100%;
+    }
+  }
+
+  //Mat Table Custom
+  .mat-table{
+    box-shadow: 1px 1px 10px #ececec;
+  }
+  td.mat-cell:first-of-type {
+    padding: 1.4rem;
+  }
+  
+  //Custom Icons styles
+  .delete-icon{
+    & mat-icon{
+        color: #b60000b3;
+    }
+  }
+  .profile-icon{
+    & mat-icon{
+        color: #0075bec9;
+    }
+  }
+  .edit-icon{
+    & mat-icon{
+        color: #026d48bf;
+    }
+  }
+}
