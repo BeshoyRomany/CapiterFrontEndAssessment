@@ -75,7 +75,7 @@ export class UserListComponent implements OnInit, OnDestroy {
       .subscribe(
         (userData) => {
           if (userData) {
-            console.log(userData);
+            this.deletUserTable(userData);
           }
         },
         (error) => {
@@ -91,6 +91,12 @@ export class UserListComponent implements OnInit, OnDestroy {
     });
   }
 
+  //Delete User from the the datasource
+  deletUserTable(userData: SingleUser) {
+      let rowDataIndex = this.dataSource.data.indexOf(userData);
+      this.dataSource.data.splice(rowDataIndex, 1);
+      this.dataSource._updateChangeSubscription();
+  }
   //Clear Subscriptions
   ngOnDestroy(): void {
     this.subscriptions.forEach((item) => {

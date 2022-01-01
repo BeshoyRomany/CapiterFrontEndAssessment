@@ -24,7 +24,7 @@ export class UserDeletionComponent implements OnInit {
       if(status){
         console.log(status)
         this.usersService.showMessage(`${this.userData.first_name} deleted successfully` , 'success')
-        this.dialogRef.close(this.userData.id);
+        this.dialogRef.close(this.userData);
       }
     },
     (error) => {
