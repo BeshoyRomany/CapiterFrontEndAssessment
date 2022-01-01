@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SingleUser } from '../models/single-user.model';
 import { UserCreationComponent } from '../user-creation/user-creation.component';
+import { UserDeletionComponent } from '../user-deletion/user-deletion.component';
 
 @Component({
   selector: 'app-user-list',
@@ -17,51 +18,77 @@ import { UserCreationComponent } from '../user-creation/user-creation.component'
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['avatar', 'first_name', 'last_name', 'email', 'actions'];
+  displayedColumns: string[] = [
+    'avatar',
+    'first_name',
+    'last_name',
+    'email',
+    'actions',
+  ];
   dataSource!: MatTableDataSource<SingleUser>;
   subscriptions: Subscription[] = [];
-  constructor(private userService: UsersService, public dialog: MatDialog, private router: Router) {}
+  constructor(
+    private usersService: UsersService,
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-   let getUsers = this.userService.getAllUsers().subscribe(
-      results => {
-        console.log(results.data);
+    let getUsers = this.usersService.getAllUsers().subscribe(
+      (results) => {
         this.dataSource = this.getMatUsersDataSource(results.data);
       },
-      errorReq => {
-        console.log(errorReq);
+      (error) => {
+        this.usersService.showMessage(error, 'error');
       }
     );
     this.subscriptions.push(getUsers);
   }
 
   // MatTable DataSource Class
-  getMatUsersDataSource(userList: SingleUser[]){
-    let matTableDataSource = new MatTableDataSource(userList); 
+  getMatUsersDataSource(userList: SingleUser[]) {
+    let matTableDataSource = new MatTableDataSource(userList);
     return matTableDataSource;
   }
 
   //Add User
   addUser() {
     const dialogRef = this.dialog.open(UserCreationComponent, {
-      panelClass:'app-dialog-size'
-    });
-
-    dialogRef.afterClosed().pipe(map(result => {
-      return result;
-    })).subscribe(result => {
-
+      panelClass: 'app-dialog-size',
     });
   }
 
   //Delete user
-  deleteUser(rowData: SingleUser){
+  deleteUser(userData: SingleUser) {
+    const dialogRef = this.dialog.open(UserDeletionComponent, {
+      panelClass: 'app-dialog-size',
+      data: userData,
+    });
 
+    dialogRef
+      .afterClosed()
+      .pipe(
+        map((result) => {
+          return result;
+        })
+      )
+      .subscribe(
+        (userData) => {
+          if (userData) {
+            console.log(userData);
+          }
+        },
+        (error) => {
+          this.usersService.showMessage(error, 'error');
+        }
+      );
   }
 
   //Update User
-  updateUser(userRow: SingleUser){
-    this.router.navigate(['/users', userRow.id, 'edit'], {queryParams: {userId: userRow.id}});
+  updateUser(userRow: SingleUser) {
+    this.router.navigate(['/users', userRow.id, 'edit'], {
+      queryParams: { userId: userRow.id },
+    });
   }
 
   //Clear Subscriptions

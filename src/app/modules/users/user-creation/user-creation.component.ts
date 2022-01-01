@@ -13,7 +13,7 @@ export class UserCreationComponent implements OnInit, OnDestroy {
   userAddForm!: FormGroup;
   subscriptions: Subscription[] = [];
   constructor(
-    private userService: UsersService,
+    private usersService: UsersService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<UserCreationComponent>
   ) {}
@@ -43,19 +43,18 @@ export class UserCreationComponent implements OnInit, OnDestroy {
         name: this.userAddForm.value.name,
         job: this.userAddForm.value.job,
       };
-      let userCreation = this.userService.createUser(formData).subscribe(
+      let userCreation = this.usersService.createUser(formData).subscribe(
         (response) => {
           console.log(response);
           if (response) {
-            this.userService.showMessage(
+            this.usersService.showMessage(
               `${response.name} Added Successfully`,
               'success'
             );
           }
         },
-        (errorReq) => {
-          console.log(errorReq);
-          this.userService.showMessage(errorReq, 'error');
+        (error) => {
+          this.usersService.showMessage(error, 'error');
         }
       );
       this.subscriptions.push(userCreation);
@@ -65,12 +64,15 @@ export class UserCreationComponent implements OnInit, OnDestroy {
   //close Dialog
   cancel(){
     this.dialogRef.close();
-    this.subscriptions.forEach((item) => {
-      item.unsubscribe();
-    });
+    this.removeSubscriptions();
   }
   //Remove Subscriptions
   ngOnDestroy(): void {
+    this.removeSubscriptions();
+  }
+
+  //Remove Subscriptions
+  removeSubscriptions(){
     this.subscriptions.forEach((item) => {
       item.unsubscribe();
     });

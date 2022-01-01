@@ -26,6 +26,7 @@ body {
     box-shadow: 0.1rem 0.1rem 0.5rem #ddd;
     border-radius: 50%;
     width: 6rem;
+    cursor: pointer;
   }
 }
 
@@ -40,6 +41,10 @@ body {
   & .mat-button-wrapper{
     color:#fff
   }
+}
+.warn-color{
+  color:#b60000b3;
+  font-weight: bold;
 }
 .warn {
   background-color: #b60000b3;

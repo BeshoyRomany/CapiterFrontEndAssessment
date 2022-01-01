@@ -16,7 +16,7 @@ export class SingleUserComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
   constructor(
     private route: ActivatedRoute,
-    private userService: UsersService,
+    private usersService: UsersService,
     public loaderService: LoaderService, private cdRef: ChangeDetectorRef
   ) { }
 
@@ -27,7 +27,7 @@ export class SingleUserComponent implements OnInit, OnDestroy {
     //Get Single User
     getUser(){
       const id = this.route.snapshot.params['id'];
-      let singleUser = this.userService.getUser(id).subscribe(
+      let singleUser = this.usersService.getUser(id).subscribe(
         (userData) => {
           if(userData)
             console.log(userData);
@@ -36,10 +36,10 @@ export class SingleUserComponent implements OnInit, OnDestroy {
             // Just added for purpose to see the shimmer loading, because the response is too fast
             setTimeout(() => {
               this.isLoading = false;
-            }, 2000);
+            }, 1000);
         },
-        (errorReq) => {
-          console.log(errorReq);
+        (error) => {
+          console.log(error);
           this.isLoading = false
         }
       );

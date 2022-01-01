@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { catchError, map } from 'rxjs/operators';
@@ -58,31 +58,45 @@ export class UsersService {
   }
 
   //Create User
-  createUser(body: SingleUser): Observable<SingleUser>{
-    return this.http.post<SingleUser>(`${environment.apiUrl}/users/`, body)
-    .pipe(
-      map((results) => {
-        return results;
+  createUser(body: SingleUser): Observable<SingleUser> {
+    return this.http
+      .post<SingleUser>(`${environment.apiUrl}/users/`, body)
+      .pipe(
+        map((results) => {
+          return results;
+        }),
+        catchError((errorReq) => {
+          let errorMsg = errorReq.message;
+          return throwError(errorMsg);
+        })
+      );
+  }
+
+  //Delete User
+  deleteUser(id?: number): Observable<boolean> {
+    return this.http.delete<boolean>(`${environment.apiUrl}/users/${id}`).pipe(
+      map((result) => {
+        return result = true;
       }),
       catchError((errorReq) => {
         let errorMsg = errorReq.message;
         return throwError(errorMsg);
       })
-    )
+    );
   }
 
-  //Show Message
-  showMessage(message: string, status: string, action: string = 'Dismiss' ) {
-    if(status == 'success'){
-      this.snackBar.open(message, action,{
+  //Show request status Messages
+  showMessage(message: string | undefined, status: string, action: string = 'Dismiss') {
+    if (status == 'success') {
+      this.snackBar.open(message!, action, {
         duration: 4000,
         verticalPosition: 'bottom',
         horizontalPosition: 'center',
         panelClass: ['success'],
       });
     }
-    if(status === 'error'){
-      this.snackBar.open(message, action, {
+    if (status === 'error') {
+      this.snackBar.open(message!, action, {
         duration: 4000,
         verticalPosition: 'bottom',
         horizontalPosition: 'center',

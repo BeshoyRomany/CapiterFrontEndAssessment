@@ -19,7 +19,7 @@ export class UserUpdatingComponent implements OnInit, OnDestroy {
   editUserForm!: FormGroup;
   constructor(
     private route: ActivatedRoute,
-    private userService: UsersService,
+    private usersService: UsersService,
     private formBuilder: FormBuilder
   ) {}
 
@@ -31,55 +31,61 @@ export class UserUpdatingComponent implements OnInit, OnDestroy {
   }
 
   //user form validation
-  userValidation(){
+  userValidation() {
     this.editUserForm = this.formBuilder.group({
       name: ['', Validators.required],
       job: ['', Validators.required],
-      id: ['']
+      id: [''],
     });
   }
 
   //Form Validation controls
-  get f() { return this.editUserForm.controls};
+  get f() {
+    return this.editUserForm.controls;
+  }
   //Get Single User
-  getUser(){
+  getUser() {
     const id = this.route.snapshot.params['id'];
-    let singleUser = this.userService.getUser(id).subscribe(
+    let singleUser = this.usersService.getUser(id).subscribe(
       (userData) => {
-        if(userData)
-        this.userData = userData;
+        if (userData) this.userData = userData;
         // Just added for purpose to see the shimmer loading, because the response is too fast
         setTimeout(() => {
           this.isLoading = false;
-        }, 2000);
-
+        }, 1000);
       },
-      (errorReq) => {
+      (error) => {
         this.isLoading = false;
-        console.log(errorReq);
+        console.log(error);
       }
     );
     this.subscriptions.push(singleUser);
   }
 
   //Update User
-  updateUser(){
-    if(this.editUserForm.valid){
+  updateUser() {
+    if (this.editUserForm.valid) {
       const updatedData = {
         name: this.editUserForm.value.name,
         job: this.editUserForm.value.job,
-        id: this.userData.id
-      }
-      let userUpdating = this.userService.updateUser(updatedData, this.userData.id).subscribe((response) => {
-        if(response){
-          this.userService.showMessage(`${response.name} Updated Successfully`, 'success' );
-        }
-      },
-      errorReq=>{
-        console.log(errorReq)
-        this.userService.showMessage(errorReq, 'error')
-      });
-      this.subscriptions.push(userUpdating)
+        id: this.userData.id,
+      };
+      let userUpdating = this.usersService
+        .updateUser(updatedData, this.userData.id)
+        .subscribe(
+          (response) => {
+            if (response) {
+              this.usersService.showMessage(
+                `${response.name} Updated Successfully`,
+                'success'
+              );
+            }
+          },
+          (error) => {
+            this.usersService.showMessage(error, 'error');
+          }
+        );
+      this.subscriptions.push(userUpdating);
     }
   }
   //Remove Subscriptions
@@ -88,5 +94,4 @@ export class UserUpdatingComponent implements OnInit, OnDestroy {
       item.unsubscribe();
     });
   }
-
 }

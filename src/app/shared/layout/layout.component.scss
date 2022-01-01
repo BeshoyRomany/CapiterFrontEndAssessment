@@ -5,7 +5,8 @@
     min-width: 250px;
     background-color: #242231;
     color: #fff;
-    height: 100vh;
+    top:0;
+    bottom: 0;
     transition: .3s ease-in-out;
     z-index: 9999;
     &.hide{
