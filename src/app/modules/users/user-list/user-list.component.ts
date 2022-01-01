@@ -42,12 +42,12 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   //Update & Delete Users
-  openActionDialog(action: string, rowData: SingleUser) {
-    // rowData.action = action;
+  actiondDialog(action: string, rowData: SingleUser) {
+    rowData.action = action;
     let dialogClass = '',
         dialogWidth = '';
-    if (action == 'Edit') {
-      dialogClass = 'user-edit-dialog';
+    if (action == 'Add') {
+      dialogClass = 'user-add-dialog';
       dialogWidth = "50%"
     } else if (action == 'Delete') {
       dialogClass = 'user-delete-dialog';

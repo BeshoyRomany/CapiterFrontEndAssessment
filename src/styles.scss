@@ -8,9 +8,17 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   .shimmer-area{
-    & img{
-      width: 33%;
-      display: block;
+    &.update-user{
+      & img{
+        width: 58%;
+        display: block;
+      }
+    }
+    &.user-profile{
+      & img{
+        width: 34%;
+        display: block;
+      }
     }
   }
 }
@@ -133,12 +141,13 @@ body {
      }
   }
   &-content {
-    box-shadow: 1px 1px 10px #ddd;
     padding: 1rem;
     &--profile-pictuer {
       margin-bottom: 2rem;
       & img {
-        width: 10rem;
+        width: 8rem;
+        border: 0.4rem solid #fff;
+        box-shadow: 0.1rem 0.5rem 0.6rem #aaaaaa91;
       }
     }
     &-msg {

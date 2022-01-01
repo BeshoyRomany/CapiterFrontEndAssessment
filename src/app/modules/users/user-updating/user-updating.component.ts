@@ -11,6 +11,7 @@ import { UsersService } from '../users.service';
   styleUrls: ['./user-updating.component.scss'],
 })
 export class UserUpdatingComponent implements OnInit, OnDestroy {
+  isLoading: boolean = true;
   userData: SingleUser = {};
   userAvatar!: string;
   job: string = 'Graphic Designer';
@@ -26,7 +27,7 @@ export class UserUpdatingComponent implements OnInit, OnDestroy {
     //Get Single User
     this.getUser();
     //Get Validation
-    this.userValidation()
+    this.userValidation();
   }
 
   //user form validation
@@ -40,16 +41,21 @@ export class UserUpdatingComponent implements OnInit, OnDestroy {
 
   //Form Validation controls
   get f() { return this.editUserForm.controls};
-  
   //Get Single User
   getUser(){
     const id = this.route.snapshot.params['id'];
     let singleUser = this.userService.getUser(id).subscribe(
       (userData) => {
-        console.log(userData);
+        if(userData)
         this.userData = userData;
+        // Just added for purpose to see the shimmer loading, because the response is too fast
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 2000);
+
       },
       (errorReq) => {
+        this.isLoading = false;
         console.log(errorReq);
       }
     );
@@ -67,7 +73,8 @@ export class UserUpdatingComponent implements OnInit, OnDestroy {
       this.userService.updateUser(updatedData, this.userData.id).subscribe((response) => {
         console.log(response);
         if(response){
-          this.userService.showMessage(`${response.name} Updated Successfully`, 'success' )
+          this.userService.showMessage(`${response.name} Updated Successfully`, 'success' );
+          console.log(this.editUserForm);
         }
       },
       errorReq=>{

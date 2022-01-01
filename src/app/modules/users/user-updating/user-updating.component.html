@@ -1,4 +1,8 @@
-<section class="form-panel">
+<!-- Shimmer loading -->
+<div class="shimmer-area update-user" *ngIf="isLoading">
+    <img src="../../../../assets/shimmers/userUpdate.svg" alt="">
+</div>
+<section class="form-panel" *ngIf="!isLoading">
     <div class="form-panel--header">
         <mat-icon>mode_edit</mat-icon> <h3>User Update</h3>
     </div>
@@ -26,7 +30,7 @@
                 </mat-form-field>
             </section>
             <div class="form-panel--footer">
-                <button mat-raised-button type="submit" class="success" type="submit">Update</button>
+                <button mat-raised-button type="submit" class="success" [disabled]="!editUserForm.valid" type="submit">Update</button>
                 <button mat-raised-button class="warn" [routerLink]="['/users']">Cancel</button>
             </div>
         </form>
