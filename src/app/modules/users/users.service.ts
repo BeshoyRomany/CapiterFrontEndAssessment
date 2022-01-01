@@ -57,6 +57,20 @@ export class UsersService {
       );
   }
 
+  //Create User
+  createUser(body: SingleUser): Observable<SingleUser>{
+    return this.http.post<SingleUser>(`${environment.apiUrl}/users/`, body)
+    .pipe(
+      map((results) => {
+        return results;
+      }),
+      catchError((errorReq) => {
+        let errorMsg = errorReq.message;
+        return throwError(errorMsg);
+      })
+    )
+  }
+
   //Show Message
   showMessage(message: string, status: string, action: string = 'Dismiss' ) {
     if(status == 'success'){

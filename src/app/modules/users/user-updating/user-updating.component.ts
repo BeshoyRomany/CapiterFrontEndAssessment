@@ -26,7 +26,7 @@ export class UserUpdatingComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     //Get Single User
     this.getUser();
-    //Get Validation
+    //Check Validation
     this.userValidation();
   }
 
@@ -70,17 +70,16 @@ export class UserUpdatingComponent implements OnInit, OnDestroy {
         job: this.editUserForm.value.job,
         id: this.userData.id
       }
-      this.userService.updateUser(updatedData, this.userData.id).subscribe((response) => {
-        console.log(response);
+      let userUpdating = this.userService.updateUser(updatedData, this.userData.id).subscribe((response) => {
         if(response){
           this.userService.showMessage(`${response.name} Updated Successfully`, 'success' );
-          console.log(this.editUserForm);
         }
       },
       errorReq=>{
         console.log(errorReq)
         this.userService.showMessage(errorReq, 'error')
-      })
+      });
+      this.subscriptions.push(userUpdating)
     }
   }
   //Remove Subscriptions

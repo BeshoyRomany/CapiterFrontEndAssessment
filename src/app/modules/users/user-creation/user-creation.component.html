@@ -1,1 +1,33 @@
-<p>user-creation works!</p>
+<section class="app-dialog">
+    <div class="app-dialog--header">
+        <mat-icon>person_add</mat-icon>
+        <h3 class="app-dialog--header-title">Add User</h3>
+    </div>
+    <div class="app-dialog-content">
+        <form autocomplete="off" class="w-100 count-forms" [formGroup]="userAddForm" (ngSubmit)="addUser()">
+            <section class="form-section">
+                <mat-form-field color="basic" class="w-100">
+                    <mat-label>Name</mat-label>
+                    <input formControlName="name"  type="text" name="name" matInput>
+                    <mat-error *ngIf="f.name?.touched || f.name.value !== ''">
+                        Name is required
+                    </mat-error>
+                </mat-form-field>
+            </section>
+            <section class="form-section">
+                <mat-form-field color="basic" class="w-100">
+                    <mat-label>Job</mat-label>
+                    <input formControlName="job" type="text" name="name" matInput>
+                    <mat-error *ngIf="f.name?.touched || f.name.value !== ''">
+                        Job is required
+                    </mat-error>
+                </mat-form-field>
+            </section>
+           
+            <div class="app-dialog-content--footer">
+                <button mat-raised-button class="primary" [disabled]="!userAddForm.valid">Add</button>
+                <a mat-raised-button class="warn" (click)="cancel()">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>

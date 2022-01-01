@@ -2,14 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 //Angular Material Imports
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-//User List model
-//Users Services
+
+//Users Services, Model and rxjs
 import { UsersService } from '../users.service';
-import { UserTableActionsComponent } from '../user-table-actions/user-table-actions.component';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SingleUser } from '../models/single-user.model';
+import { UserCreationComponent } from '../user-creation/user-creation.component';
 
 @Component({
   selector: 'app-user-list',
@@ -41,38 +41,23 @@ export class UserListComponent implements OnInit, OnDestroy {
     return matTableDataSource;
   }
 
-  //Update & Delete Users
-  actiondDialog(action: string, rowData: SingleUser) {
-    rowData.action = action;
-    let dialogClass = '',
-        dialogWidth = '';
-    if (action == 'Add') {
-      dialogClass = 'user-add-dialog';
-      dialogWidth = "50%"
-    } else if (action == 'Delete') {
-      dialogClass = 'user-delete-dialog';
-      dialogWidth = "30%"
-    }
-    const dialogRef = this.dialog.open(UserTableActionsComponent, {
-      width: dialogWidth,
-      data: rowData,
-      panelClass: dialogClass
+  //Add User
+  addUser() {
+    const dialogRef = this.dialog.open(UserCreationComponent, {
+      panelClass:'app-dialog-size'
     });
 
     dialogRef.afterClosed().pipe(map(result => {
-      if (result)
-        delete result.data["action"];
       return result;
     })).subscribe(result => {
-      // if (result){
-      //   if (result.action == 'Edit')
-      //     this.editUser(result.data);
-      //   if(result.action == 'Delete')
-      //     this.deleteUser(result.data);
-      // }
+
     });
   }
 
+  //Delete user
+  deleteUser(rowData: SingleUser){
+
+  }
 
   //Update User
   updateUser(userRow: SingleUser){
