@@ -1,8 +1,8 @@
 export class Users {
-    page!: number;
-    per_page!: number;
-    total!: number;
-    total_pages!: number;
+    page?: number;
+    per_page?: number;
+    total?: number;
+    total_pages?: number;
     data!: [
         {
             id: number,
@@ -12,8 +12,8 @@ export class Users {
             avatar: string
         }
     ];
-    support!: {
-        url: string,
-        text: string
+    support?: {
+        url?: string,
+        text?: string
     }
 }

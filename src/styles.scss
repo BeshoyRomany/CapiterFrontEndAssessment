@@ -7,12 +7,46 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  .shimmer-area{
+    & img{
+      width: 33%;
+      display: block;
+    }
+  }
 }
 
 //Custom
 .d-none {
   display: none;
 }
+//colors
+.primary {
+  background-color: #0075bec9;
+  color: #fff;
+  & .mat-button-wrapper{
+    color:#fff
+  }
+}
+.warn {
+  background-color: #b60000b3;
+  color: #fff;
+  & .mat-button-wrapper{
+    color:#fff
+  }
+}
+.success {
+  background-color: #026d48bf;
+  color: #fff;
+  & .mat-button-wrapper{
+    color:#fff
+  }
+}
+// Loadig bar
+.loading-bar{
+  position: absolute;
+  width: 100%;
+}
+
 //Custom App Panels
 .app-panel {
   &--header {
@@ -24,6 +58,7 @@ body {
     }
     & mat-icon {
       font-size: 1.8rem;
+      color: #666666;
     }
   }
   &--content {
@@ -31,29 +66,118 @@ body {
       width: 100%;
     }
   }
+  &--user-content{
+    display: flex;
+    & img {
+      width: 8rem;
+      border: 0.4rem solid #fff;
+      box-shadow: 0.1rem 0.5rem 0.6rem #aaaaaa91;
+    }
+    &-userInfo{
+      padding: 1rem;
+      &-row{
+        display: flex;
+        align-items: center;
+        margin-bottom: .5rem;
+        margin-left:1rem
+      }
+    }
+  }
 
   //Mat Table Custom
-  .mat-table{
+  .mat-table {
     box-shadow: 1px 1px 10px #ececec;
   }
   td.mat-cell:first-of-type {
     padding: 1.4rem;
   }
-  
+
   //Custom Icons styles
-  .delete-icon{
-    & mat-icon{
-        color: #b60000b3;
+  .delete-icon {
+    & mat-icon {
+      color: #b60000b3;
     }
   }
-  .profile-icon{
-    & mat-icon{
-        color: #0075bec9;
+  .profile-icon {
+    & mat-icon {
+      color: #0075bec9;
     }
   }
-  .edit-icon{
-    & mat-icon{
-        color: #026d48bf;
+  .edit-icon {
+    & mat-icon {
+      color: #026d48bf;
+    }
+  }
+}
+
+.mat-error {
+  font-weight: bold;
+  font-size: 0.7rem;
+}
+
+//Form Panel
+.form-panel {
+  &--header {
+    direction: ltr;
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 2rem;
+    & h3{
+      margin-bottom: 0;
+      margin-left: .7rem;
+    }
+     & mat-icon{
+      color: #666666;
+     }
+  }
+  &-content {
+    box-shadow: 1px 1px 10px #ddd;
+    padding: 1rem;
+    &--profile-pictuer {
+      margin-bottom: 2rem;
+      & img {
+        width: 10rem;
+      }
+    }
+    &-msg {
+      direction: ltr;
+    }
+
+    & form {
+      min-width: 100%;
+      .mat-form-field {
+        min-width: 100%;
+        margin-bottom: 1rem;
+      }
+    }
+    @media (min-width: 768px) {
+      display: flex;
+      &--profile-pictuer {
+        margin-right: 2rem;
+        & img {
+          width: 10rem;
+        }
+      }
+      & form {
+        min-width: 25rem;
+        .mat-form-field {
+          min-width: 100%;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+  &--footer {
+    direction: rtl;
+    display: flex;
+    justify-content: flex-start;
+    & button {
+      min-width: 80px;
+      border-radius: 0;
+      margin-right: 1rem;
+      margin-top: 1rem;
     }
   }
 }

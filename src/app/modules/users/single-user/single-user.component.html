@@ -1,1 +1,20 @@
-<p>single-user works!</p>
+<!-- Shimmer loading -->
+<div class="shimmer-area" *ngIf="isLoading">
+    <img src="../../../../assets/shimmers/userProfile.svg" alt="">
+</div>
+<section class="app-panel" *ngIf="!isLoading">
+    <header class="app-panel--header">
+        <mat-icon>person</mat-icon> <h3 [innerText]="userProfileData.first_name + '\'s  Profile'">User Profile</h3>
+    </header>
+    <div class="app-panel--user-content">
+        <img [src]="userProfileData.avatar" [title]="userProfileData.first_name + '\'s Profile Picture'"/>
+        <div class="app-panel--user-content-userInfo">
+            <div class="app-panel--user-content-userInfo-row">
+                <span [innerText]="userProfileData.first_name + ' ' + userProfileData.last_name "></span>
+            </div>
+            <div class="app-panel--user-content-userInfo-row">
+                <span [innerText]="userProfileData.email "></span>
+            </div>
+        </div>
+    </div>
+</section>

@@ -8,7 +8,6 @@ export class LayoutService {
     this.initLayout();
    }
   toggleSidebar(){
-    console.log('clicked');
     let sidebar = document.querySelector('.app-layout-leftSide');
     let content = document.querySelector('.app-layout-rightSide');
     let overlay = document.querySelector('.app-layout-rightSide--overlay');
