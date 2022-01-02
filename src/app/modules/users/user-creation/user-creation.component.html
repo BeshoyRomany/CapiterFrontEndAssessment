@@ -8,7 +8,7 @@
             <section class="form-section">
                 <mat-form-field color="basic" class="w-100">
                     <mat-label>Name</mat-label>
-                    <input formControlName="name"  type="text" name="name" matInput>
+                    <input formControlName="name" type="text" name="name" matInput>
                     <mat-error *ngIf="f.name?.touched || f.name.value !== ''">
                         Name is required
                     </mat-error>
@@ -23,7 +23,6 @@
                     </mat-error>
                 </mat-form-field>
             </section>
-           
             <div class="app-dialog-content--footer">
                 <button mat-raised-button class="primary" [disabled]="!userAddForm.valid">Add</button>
                 <a mat-raised-button class="warn" (click)="cancel()">Cancel</a>

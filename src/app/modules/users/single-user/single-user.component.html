@@ -4,10 +4,12 @@
 </div>
 <section class="app-panel" *ngIf="!isLoading">
     <header class="app-panel--header">
-        <mat-icon>person</mat-icon> <h3 [innerText]="userProfileData.first_name + '\'s  Profile'">User Profile</h3>
+        <mat-icon>person</mat-icon>
+        <h3 [innerText]="userProfileData.first_name + '\'s  Profile'">User Profile</h3>
     </header>
     <div class="app-panel--user-content">
-        <img class="app-panel--user-content" [src]="userProfileData.avatar" [title]="userProfileData.first_name + '\'s Profile Picture'"/>
+        <img class="app-panel--user-content" [src]="userProfileData.avatar"
+            [title]="userProfileData.first_name + '\'s Profile Picture'" />
         <div class="app-panel--user-content-userInfo">
             <div class="app-panel--user-content-userInfo-row">
                 <span [innerText]="userProfileData.first_name + ' ' + userProfileData.last_name "></span>

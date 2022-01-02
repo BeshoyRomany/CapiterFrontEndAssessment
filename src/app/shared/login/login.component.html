@@ -1,1 +1,32 @@
-<p>login works!</p>
+<section class="app-login">
+    <img src="../../../assets/img/logo.png" />
+    <div class="app-login--section">
+        <form autocomplete="off" class="w-100 count-forms" [formGroup]="userLoginForm" (ngSubmit)="login()">
+            <section class="form-section">
+                <mat-form-field color="basic" class="w-100">
+                    <mat-label>Username</mat-label>
+                    <input formControlName="email" type="text" name="email" matInput>
+                    <mat-error *ngIf="f.email?.touched && f.email.value == '' ">
+                        Email is required
+                    </mat-error>
+                    <mat-error *ngIf="f.email?.dirty && f.email?.invalid && f.email.value !== ''">
+                        Please enter a valid Email
+                    </mat-error>
+                </mat-form-field>
+            </section>
+            <section class="form-section">
+                <mat-form-field color="basic" class="w-100">
+                    <mat-label>Password</mat-label>
+                    <input formControlName="password" type="password" name="password" matInput>
+                    <mat-error *ngIf="f.password?.touched || f.password.value == ''">
+                        Password is required
+                    </mat-error>
+                </mat-form-field>
+            </section>
+
+            <div class="app-dialog-content--footer">
+                <button mat-raised-button class="primary">Login</button>
+            </div>
+        </form>
+    </div>
+</section>

@@ -4,7 +4,8 @@
 </div>
 <section class="form-panel" *ngIf="!isLoading">
     <div class="form-panel--header">
-        <mat-icon>mode_edit</mat-icon> <h3>User Update</h3>
+        <mat-icon>mode_edit</mat-icon>
+        <h3>User Update</h3>
     </div>
     <div class="form-panel-content">
         <div class="form-panel-content--profile-pictuer">
@@ -30,7 +31,8 @@
                 </mat-form-field>
             </section>
             <div class="form-panel--footer">
-                <button mat-raised-button type="submit" class="success" [disabled]="!editUserForm.valid" type="submit">Update</button>
+                <button mat-raised-button type="submit" class="success" [disabled]="!editUserForm.valid"
+                    type="submit">Update</button>
                 <button mat-raised-button class="warn" [routerLink]="['/users']">Cancel</button>
             </div>
         </form>

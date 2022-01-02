@@ -56,7 +56,6 @@ export class UserUpdatingComponent implements OnInit, OnDestroy {
       },
       (error) => {
         this.isLoading = false;
-        console.log(error);
       }
     );
     this.subscriptions.push(singleUser);

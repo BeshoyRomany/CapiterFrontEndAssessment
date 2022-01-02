@@ -45,12 +45,12 @@ export class UserCreationComponent implements OnInit, OnDestroy {
       };
       let userCreation = this.usersService.createUser(formData).subscribe(
         (response) => {
-          console.log(response);
           if (response) {
             this.usersService.showMessage(
               `${response.name} Added Successfully`,
               'success'
             );
+            this.dialogRef.close();
           }
         },
         (error) => {
@@ -62,7 +62,7 @@ export class UserCreationComponent implements OnInit, OnDestroy {
   }
 
   //close Dialog
-  cancel(){
+  cancel() {
     this.dialogRef.close();
     this.removeSubscriptions();
   }
@@ -72,7 +72,7 @@ export class UserCreationComponent implements OnInit, OnDestroy {
   }
 
   //Remove Subscriptions
-  removeSubscriptions(){
+  removeSubscriptions() {
     this.subscriptions.forEach((item) => {
       item.unsubscribe();
     });

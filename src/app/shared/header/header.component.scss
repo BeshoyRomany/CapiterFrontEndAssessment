@@ -1,26 +1,26 @@
-.app-header{
-    width: 100%;
-    position: relative;
-    & .mat-toolbar-single-row{
-        justify-content: space-between !important;
+.app-header {
+  width: 100%;
+  position: relative;
+  & .mat-toolbar-single-row {
+    justify-content: space-between !important;
+  }
+  &--brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & img {
+      width: 150px;
+      order: 1;
+      right: 6px;
+      top: -23px;
     }
-    &--brand{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        & img{
-            width: 150px;
-            order: 1;
-            right: 6px;
-            top: -23px;
-        }
-        & h4{
-            line-height: 60px;
-        }
+    & h4 {
+      line-height: 60px;
     }
-    &--menu-toggler{
-        mat-icon{
-            color:#1E1D29;
-        }
+  }
+  &--menu-toggler {
+    mat-icon {
+      color: #1e1d29;
     }
+  }
 }

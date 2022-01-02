@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LayoutService {
   constructor() {
     this.initLayout();
-   }
-  toggleSidebar(){
+  }
+  toggleSidebar() {
     let sidebar = document.querySelector('.app-layout-leftSide');
     let content = document.querySelector('.app-layout-rightSide');
     let overlay = document.querySelector('.app-layout-rightSide--overlay');
@@ -15,22 +15,22 @@ export class LayoutService {
     sidebar?.classList.toggle('hide');
     content?.classList.toggle('expand');
   }
-  layoutActions(){
+  layoutActions() {
     let sidebar = document.querySelector('.app-layout-leftSide');
     let content = document.querySelector('.app-layout-rightSide');
     let overlay = document.querySelector('.app-layout-rightSide--overlay');
-    if(window.innerWidth < 991){
+    if (window.innerWidth < 991) {
       sidebar?.classList.add('hide');
       content?.classList.add('expand');
       overlay?.classList.add('d-none');
-    }else{
+    } else {
       sidebar?.classList.remove('hide');
       content?.classList.remove('expand');
     }
   }
-  initLayout(){
+  initLayout() {
     window.onresize = () => {
-      this.layoutActions()
+      this.layoutActions();
     };
     window.onload = () => {
       this.layoutActions();

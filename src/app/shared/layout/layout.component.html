@@ -1,6 +1,6 @@
 <article class="app-layout">
     <!-- APP: Left Side -->
-    <section class="app-layout-leftSide">
+    <section class="app-layout-leftSide" *ngIf="isAuthenticated()">
         <aside class="app-layout-leftSide--sidebar">
             <app-sidebar></app-sidebar>
         </aside>
@@ -8,9 +8,9 @@
     <!-- //End Left Side -->
 
     <!-- APP: Right Side -->
-    <section class="app-layout-rightSide">
+    <section class="app-layout-rightSide" [ngClass]="{'login-page': !isAuthenticated()}">
         <!-- APP: Header -->
-        <header>
+        <header *ngIf="isAuthenticated()">
             <app-header></app-header>
         </header>
         <!-- APP: Content -->

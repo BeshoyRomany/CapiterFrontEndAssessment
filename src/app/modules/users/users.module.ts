@@ -17,7 +17,6 @@ import { UserCreationComponent } from './user-creation/user-creation.component';
 import { UserUpdatingComponent } from './user-updating/user-updating.component';
 import { UserDeletionComponent } from './user-deletion/user-deletion.component';
 import { HttpClientModule } from '@angular/common/http';
-import { UserTableActionsComponent } from './user-table-actions/user-table-actions.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
@@ -27,7 +26,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     UserCreationComponent,
     UserUpdatingComponent,
     UserDeletionComponent,
-    UserTableActionsComponent,
   ],
   imports: [
     UserRoutingModule,

@@ -1,17 +1,17 @@
-.app-home{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    & img{
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        width: 300px;
-    }
-    & h2{
-        font-size: 18px;
-        color: #3f3f3f;
-        text-transform: capitalize;
-        margin: 0;
-    }
+.app-home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & img {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 300px;
+  }
+  & h2 {
+    font-size: 18px;
+    color: #3f3f3f;
+    text-transform: capitalize;
+    margin: 0;
+  }
 }

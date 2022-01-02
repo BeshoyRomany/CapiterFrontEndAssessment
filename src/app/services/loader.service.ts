@@ -2,29 +2,29 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoaderService {
   private count = 0;
   private loadingBehavior = new BehaviorSubject<string>('');
-  constructor() { }
+  constructor() {}
 
   getSpinnerObserver(): Observable<string> {
-    return this.loadingBehavior.asObservable()
+    return this.loadingBehavior.asObservable();
   }
 
   requestStarted() {
-    if(++this.count === 1){
-      this.loadingBehavior.next('start')
+    if (++this.count === 1) {
+      this.loadingBehavior.next('start');
     }
   }
-  requestEnded(){
-    if(this.count === 0 || --this.count === 0){
+  requestEnded() {
+    if (this.count === 0 || --this.count === 0) {
       this.loadingBehavior.next('stop');
     }
   }
 
-  resetLoadingBehavior(){
+  resetLoadingBehavior() {
     this.count = 0;
     this.loadingBehavior.next('stop');
   }

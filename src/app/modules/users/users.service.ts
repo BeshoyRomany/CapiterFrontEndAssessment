@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { catchError, map } from 'rxjs/operators';
@@ -76,7 +76,7 @@ export class UsersService {
   deleteUser(id?: number): Observable<boolean> {
     return this.http.delete<boolean>(`${environment.apiUrl}/users/${id}`).pipe(
       map((result) => {
-        return result = true;
+        return (result = true);
       }),
       catchError((errorReq) => {
         let errorMsg = errorReq.message;
@@ -86,7 +86,11 @@ export class UsersService {
   }
 
   //Show request status Messages
-  showMessage(message: string | undefined, status: string, action: string = 'Dismiss') {
+  showMessage(
+    message: string | undefined,
+    status: string,
+    action: string = 'Dismiss'
+  ) {
     if (status == 'success') {
       this.snackBar.open(message!, action, {
         duration: 4000,
