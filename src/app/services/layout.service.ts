@@ -45,7 +45,6 @@ export class LayoutService {
       const sidebar = this.getDomElements().sidebarEl;
       const content = this.getDomElements().contentEl;
       if (sidebar && content) {
-        console.log('founded')
         window.onresize = () => {
           this.layoutActions();
         };

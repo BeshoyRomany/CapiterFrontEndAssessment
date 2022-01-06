@@ -3,6 +3,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: url(../../../assets/img/LoginBK.jpg);
+  background-size: cover;
+  height: 100%;
+  width: 100%;
   & img {
     margin-top: 2rem;
     margin-bottom: 2rem;
