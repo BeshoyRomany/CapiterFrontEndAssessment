@@ -8,10 +8,30 @@
     margin-bottom: 2rem;
     width: 300px;
   }
+  & h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: -webkit-linear-gradient(
+      45deg, #025d97, #007850);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 1rem;
+    letter-spacing: .1rem;
+  }
   & h2 {
-    font-size: 18px;
-    color: #3f3f3f;
+    color: #111a2c;
     text-transform: capitalize;
     margin: 0;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    
+  }
+  & h3{
+    color:#111a2c
+  }
+  &--cotent{
+    text-align: center;
+    width: 70%;
+    
   }
 }

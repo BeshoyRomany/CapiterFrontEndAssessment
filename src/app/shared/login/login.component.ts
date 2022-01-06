@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthModel } from 'src/app/modules/models/auth.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { LayoutService } from 'src/app/services/layout.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   userLoginForm!: FormGroup;
   subscriptions: Subscription[] = [];
   loginInfo: AuthModel = {
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private layoutService: LayoutService
   ) {}
   ngOnInit(): void {
     //Check User Authentication
@@ -55,7 +57,7 @@ export class LoginComponent implements OnInit {
         email: this.userLoginForm.value.email,
         password: this.userLoginForm.value.password,
       };
-      this.authService.login(formData).subscribe(
+      let login = this.authService.login(formData).subscribe(
         (data) => {
           if (data) {
             this.authService.showMessage(
@@ -73,6 +75,13 @@ export class LoginComponent implements OnInit {
           );
         }
       );
+      this.subscriptions.push(login);
     }
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((item) => {
+      item.unsubscribe();
+    });
+    this.layoutService.getLayout();
   }
 }
